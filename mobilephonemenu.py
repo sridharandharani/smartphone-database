@@ -1,4 +1,5 @@
 import sqlite3
+from prettytable import PrettyTable
 
 folder = sqlite3.connect("mobile.db")
 
@@ -42,26 +43,18 @@ while True:
 
     elif choice == 2:
         result = folder.execute("select * from smartphones ")
+        table = PrettyTable(["ID","BRAND","MODELNAME","SERIAL NUM","MANUFACTURED YEAR","MANUFACTURED MONTH","PRICE"])
         for i in result:
-            print("id",i[0])
-            print("brand",i[1])
-            print("model name",i[2])
-            print("serial num",i[3])
-            print("manufactured year",i[4])
-            print("manufactured month",i[5])
-            print("price",i[6])
+            table.add_row([i[0],i[1],i[2],i[3],i[4],i[5],i[6]])
+            print(table)
 
     elif choice == 3:
         getserial = input("Enter the serial number :")
         result = folder.execute("select * from smartphones where serialnum ="+getserial)
+        table = PrettyTable(["ID", "BRAND", "MODELNAME", "SERIAL NUM", "MANUFACTURED YEAR", "MANUFACTURED MONTH", "PRICE"])
         for i in result:
-            print("id",i[0])
-            print("brand",i[1])
-            print("model name",i[2])
-            print("serial num",i[3])
-            print("manufactured year",i[4])
-            print("manufactured month",i[5])
-            print("price",i[6])
+            table.add_row([i[0],i[1],i[2],i[3],i[4],i[5],i[6]])
+            print(table)
 
     elif choice == 4:
         getserial = input("Enter the serial number :")
